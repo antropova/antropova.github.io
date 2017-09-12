@@ -33,6 +33,10 @@
     font-size: 19px;
 }
 
+.modalContent {
+    border-radius: 15px;
+}
+
 .hero-image {
     /* Homepage_Eureka_animation.mov */
     background: #c9aefd url(../img/Ah_Ha_Landing_Page_ver02.png);
