@@ -1,3 +1,38 @@
+@font-face {
+    font-family: 'HalisR-Black';
+    src: url('../fonts/HalisR-Black.otf');
+}
+
+@font-face {
+    font-family: 'HalisR-Bold';
+    src: url('../fonts/HalisR-Bold.otf');
+}
+
+@font-face {
+    font-family: 'HalisR-Book';
+    src: url('../fonts/HalisR-Book.otf');
+}
+
+@font-face {
+    font-family: 'HalisR-ExtraLight';
+    src: url('../fonts/HalisR-ExtraLight.otf');
+}
+
+@font-face {
+    font-family: 'HalisR-Light';
+    src: url('../fonts/HalisR-Light.otf');
+}
+
+@font-face {
+    font-family: 'HalisR-Medium';
+    src: url('../fonts/HalisR-Medium.otf');
+}
+
+#navbarTogglerDemo01 {
+    font-family: 'HalisR-Light';
+    font-size: 19px;
+}
+
 .hero-image {
     /* Homepage_Eureka_animation.mov */
     background: #c9aefd url(../img/Ah_Ha_Landing_Page_ver02.png);
@@ -8,6 +43,16 @@
     background-position: center center;
 }
 
+.hero-image h2 {
+    font-family: 'HalisR-Medium';
+    font-size: 65px;
+}
+
+.hero-image p {
+    font-family: 'HalisR-Medium';
+    font-size: 23px;
+}
+
 .row .no-gutters {
     margin-right: 0;
     margin-left: 0;
@@ -16,10 +61,6 @@
         padding-right: 0;
         padding-left: 0;
     }
-}
-
-body {
-    font-family: Helvetica;
 }
 
 .display-text p {
@@ -154,11 +195,13 @@ p {
     border: 2px solid #2FDCAA;
     padding: 10px 40px;
     background: #2FDCAA;
-    width: 200px;
+    width: 242px;
     color: white;
     border-radius: 25px;
     cursor: pointer;
     text-align: center;
+    font-family: 'HalisR-Medium';
+    font-size: 25px;
 }
 
 .link-hover {
