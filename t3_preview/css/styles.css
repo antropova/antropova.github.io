@@ -1,31 +1,31 @@
 @font-face {
     font-family: 'HalisR-Black';
-    src: url('./fonts/HalisR-Black.otf');
+    src: url('./../fonts/HalisR-Black.otf');
 }
 
 @font-face {
     font-family: 'HalisR-Bold';
-    src: url('./fonts/HalisR-Bold.otf');
+    src: url('./../fonts/HalisR-Bold.otf');
 }
 
 @font-face {
     font-family: 'HalisR-Book';
-    src: url('./fonts/HalisR-Book.otf');
+    src: url('./../fonts/HalisR-Book.otf');
 }
 
 @font-face {
     font-family: 'HalisR-ExtraLight';
-    src: url('./fonts/HalisR-ExtraLight.otf');
+    src: url('./../fonts/HalisR-ExtraLight.otf');
 }
 
 @font-face {
     font-family: 'HalisR-Light';
-    src: url('./fonts/HalisR-Light.otf');
+    src: url('./../fonts/HalisR-Light.otf');
 }
 
 @font-face {
     font-family: 'HalisR-Medium';
-    src: url('./fonts/HalisR-Medium.otf');
+    src: url('./../fonts/HalisR-Medium.otf');
 }
 
 #navbarTogglerDemo01 {
