@@ -1,0 +1,216 @@
+.hero-image {
+    /* Homepage_Eureka_animation.mov */
+    background: #c9aefd url(../img/Ah_Ha_Landing_Page_ver02.png);
+    width: 100%;
+    height: 666px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.row .no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+    &>[class^="col-"],
+    &>[class*=" col-"] {
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+
+body {
+    font-family: Helvetica;
+}
+
+.display-text p {
+    font-size: .5em;
+}
+
+.display-text h2 {
+    font-size: 1em;
+}
+
+.display-text {
+    padding: 10% 55% 10% 5%;
+    font-size: 100%;
+    font-size: calc(100% + 2vw);
+}
+
+.hero-text {
+    height: 700px;
+}
+
+.display-card {
+    position: relative;
+}
+
+.display-card .display-text {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+}
+
+.display-card img {
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    top: 0;
+}
+
+.flipped-text-container {
+    position: relative;
+}
+
+.flipped-text {
+    transform: rotate(-90deg);
+    display: inline-block;
+    position: absolute;
+    left: -120px;
+    color: #5a30ab;
+    bottom: 120px;
+}
+
+.more-than-info-text {
+    height: 480px;
+}
+
+.more-than-info h2,
+.more-than-info p {
+    color: #5a30ab;
+}
+
+.subject-submenu .navbar-light .navbar-nav .nav-link:hover {
+    border-bottom: 3px solid orange;
+}
+
+.subject-submenu .navbar-light .navbar-nav .nav-link {
+    border-bottom: 3px solid transparent;
+}
+
+.navbar-subjects {
+    font-size: 13px;
+}
+
+.navbar-subject ul {
+    width: 100%;
+    justify-content: center;
+}
+
+h2,
+p {
+    color: white;
+}
+
+.nav-item {
+    padding: 0 1em;
+}
+
+.navbar-brand img {
+    width: 120px;
+    display: inline-block;
+}
+
+.form-inline {
+    display: inline-block;
+}
+
+.hero-container {
+    text-align: center;
+}
+
+.sign-up-btn {
+    border-radius: 25px;
+    color: white;
+    background: #2FDCAA;
+    border: 2px solid #2FDCAA;
+}
+
+.sign-up-form {
+    border-radius: 25px;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+    border-bottom: 3px solid rgb(183, 148, 253);
+}
+
+.navbar-light .navbar-nav .nav-link {
+    border-bottom: 3px solid transparent;
+}
+
+/*.navbar.nav-item:hover {
+    border-bottom: 3px solid rgb(183, 148, 253);
+    padding: 0 0.25em;
+    margin: 0 1.25em;
+}*/
+
+/*.active {
+    border-bottom: 3px solid rgb(183, 148, 253);
+    padding: 0 0.25em;
+    margin: 0 1.25em;
+}*/
+
+.discover-button {
+    display: inline-block;
+    border: 2px solid #2FDCAA;
+    padding: 10px 40px;
+    background: #2FDCAA;
+    width: 200px;
+    color: white;
+    border-radius: 25px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.link-hover {
+    cursor: pointer;
+}
+
+.top-tutors-cards {
+    padding: 2em;
+    position: relative;
+    top: -200px;
+}
+
+.top-tutors-cards-container {
+    background-color: #f2f3f7;
+    height: 800px;
+}
+
+.top-tutors-container {
+    background-color: #6732cb;
+}
+
+.top-tutors-text, .top-videos-text {
+    height: 600px;
+}
+
+.top-tutors-button {
+    margin: auto;
+}
+
+.top-tutor-card {
+    padding: 1rem;
+    box-sizing: border-box;
+    background-color: white;
+    border-radius: 4px;
+    height: 250px;
+    margin: 14px;
+}
+
+.top-tutor-content {
+    padding: 1rem;
+}
+
+.top-tutor-content > p {
+    color: #969696;
+    font-size: 12px;
+}
+
+.contact-container {
+    background-color: #f2f3f7;
+    height: 600px;
+}
+
+.top-videos-container {
+    background-color: #c9aefd;
+}
