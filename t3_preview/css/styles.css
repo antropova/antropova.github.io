@@ -1,31 +1,31 @@
 @font-face {
     font-family: 'HalisR-Black';
-    src: url('../antropova.github.io/t3_preview/fonts/HalisR-Black.otf');
+    src: url('./fonts/HalisR-Black.otf');
 }
 
 @font-face {
     font-family: 'HalisR-Bold';
-    src: url('../antropova.github.io/t3_preview/fonts/HalisR-Bold.otf');
+    src: url('./fonts/HalisR-Bold.otf');
 }
 
 @font-face {
     font-family: 'HalisR-Book';
-    src: url('../antropova.github.io/t3_preview/fonts/HalisR-Book.otf');
+    src: url('./fonts/HalisR-Book.otf');
 }
 
 @font-face {
     font-family: 'HalisR-ExtraLight';
-    src: url('../antropova.github.io/t3_preview/fonts/HalisR-ExtraLight.otf');
+    src: url('./fonts/HalisR-ExtraLight.otf');
 }
 
 @font-face {
     font-family: 'HalisR-Light';
-    src: url('../antropova.github.io/t3_preview/fonts/HalisR-Light.otf');
+    src: url('./fonts/HalisR-Light.otf');
 }
 
 @font-face {
     font-family: 'HalisR-Medium';
-    src: url('../antropova.github.io/t3_preview/fonts/HalisR-Medium.otf');
+    src: url('./fonts/HalisR-Medium.otf');
 }
 
 #navbarTogglerDemo01 {
@@ -45,7 +45,7 @@
 
 .hero-image h2 {
     font-family: 'HalisR-Medium';
-    font-size: 65px;
+    font-size: 60px;
 }
 
 .hero-image p {
@@ -202,6 +202,7 @@ p {
     text-align: center;
     font-family: 'HalisR-Medium';
     font-size: 25px;
+    margin-top: 20px;
 }
 
 .link-hover {
