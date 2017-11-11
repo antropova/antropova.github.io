@@ -7,8 +7,10 @@ import FavoriteHotels from './FavoriteHotels'
 class HotelsContainer extends Component {
   state = {
     hotelsList: [],
-    favoriteHotels: [],
-    checkedFilters: []
+    favoriteHotels: {},
+    style: [],
+    atmosphere: [],
+    filteredOutHotels: []
   }
 
   searchHotels(query) {
@@ -20,20 +22,51 @@ class HotelsContainer extends Component {
       })
   }
 
-  saveHotel(hotel) {
-    let savedHotels = this.state.favoriteHotels.slice()
-
-    const isDuplicate = (hotel) => {
-      return savedHotels.filter((savedHotel) =>
-        savedHotel.id === hotel.id
-      );
-    }
-
-    if (isDuplicate(hotel).length === 0) {
-      savedHotels.push(hotel)
-    }
-
+  saveHotel(newHotel) {
+    let savedHotels = this.state.favoriteHotels
+    savedHotels[newHotel.id] = newHotel
     this.setState({ favoriteHotels: savedHotels })
+  }
+
+  deleteHotel(hotel) {
+    let savedHotels = this.state.favoriteHotels
+    delete savedHotels[hotel.id]
+    this.setState({ favoriteHotels: savedHotels })
+  }
+
+  renderFilteredHotels() {
+    let atmosphere = this.state.atmosphere
+    let style = this.state.style
+    let hotels = this.state.hotelsList
+
+    if (atmosphere.length > 0 || style.length > 0) {
+      hotels = this.state.hotelsList.filter( h => {
+        if (style.indexOf(h._source.criteria.style.toLowerCase()) >= 0 || atmosphere.indexOf(h._source.criteria.atmosphere.toLowerCase()) >= 0) {
+          return true
+        } else {
+          return false
+        }
+      })
+    }
+
+    return (
+      <HotelList
+        hotels={hotels}
+        searchHotels={this.searchHotels.bind(this)}
+        favoriteHotels={this.state.favoriteHotels}
+        saveHotel={this.saveHotel.bind(this)}
+        filterHotels={this.filterHotels.bind(this)}
+      />
+    )
+  }
+
+  filterHotels(filterGroupName, target) {
+    if (target.checked) {
+      this.setState({ [filterGroupName]: [target.name , ...this.state[filterGroupName]] })
+    } else {
+      let filteredGroup = this.state[filterGroupName].filter( f => f !== target.name )
+      this.setState({ [filterGroupName]: filteredGroup})
+    }
   }
 
   render() {
@@ -41,15 +74,13 @@ class HotelsContainer extends Component {
       <div>
         <TabletHeader pathName={this.props.location.pathname} />
         <Route exact path='/' render={() => (
-          <HotelList
-            hotels={this.state.hotelsList}
-            searchHotels={this.searchHotels.bind(this)}
-            saveHotel={this.saveHotel.bind(this)}
-            favoriteHotels={this.state.favoriteHotels}
-          />
+          this.renderFilteredHotels()
         )} />
-        <Route exact path='/bookmarked-hotels' render={() => (
-          <FavoriteHotels hotels={this.state.favoriteHotels} />
+        <Route path='/bookmarked-hotels' render={() => (
+          <FavoriteHotels
+            hotels={Object.values(this.state.favoriteHotels)}
+            deleteHotel={this.deleteHotel.bind(this)}
+          />
         )} />
       </div>
     )

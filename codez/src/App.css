@@ -34,7 +34,8 @@
   padding: 20px;
 }
 
-.app-header a, .search-input, .saved-hotels-count {
+.app-header a, .search-input, 
+.saved-hotels-count, .favorite-hotels, .favorite-hotels a {
   color: #FF3300;
   font-weight: normal;
 }
@@ -43,13 +44,14 @@
   font-size: 48px;
 }
 
-.saved-hotels-count-container {
-  width: 97%;
+.filters-container {
   padding: 30px;
+  margin: 0 50px;
 }
 
 .saved-hotels-count {
   float: right;
+  font-size: 16px;
 }
 
 .search-input {
@@ -65,6 +67,33 @@
   outline: none;
 }
 
+.remove-favorite {
+  /* Rectangle: */
+  background: #FFFFFF;
+  border: 1px solid #9B9B9B;
+  border-radius: 8px;
+
+  /* Remove: */
+  font-family: ArialMT;
+  font-size: 12px;
+  color: #4A4A4A;
+  vertical-align: middle;
+  margin-left: 30px;
+  padding: 5px 10px;
+}
+
+.filter-dropdown {
+  width: 30%;
+  display: flex;
+}
+
+.filter-dropdown > div {
+  width: 50%;
+  display: inline-block;
+  text-align: left;
+  text-transform: capitalize;
+}
+
 .hotel-img {
   opacity: 0.5;
 }
@@ -77,14 +106,34 @@
   font-size: 36px;
 }
 
-.heart-unselected {
+.save-to-favorite {
   position: absolute;
   top: 30px;
   width: 100%;
 }
 
-.heart-unselected > svg {
+.save-to-favorite > svg {
   float: right;
+  cursor: pointer;
+}
+
+.favorite-hotels {
+  text-align: left;
+  font-size: 34px;
+}
+
+.favorite-hotels li {
+  margin: 20px;
+}
+
+.filter-by-button {
+  text-align: left;
+  font-size: 16px;
+}
+
+.filter-by-button > svg {
+  vertical-align: middle;
+  cursor: pointer;
 }
 
 .stackable.cards.container {
