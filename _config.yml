@@ -1,14 +1,13 @@
 # Site wide configuration
 
-title:            Masha A.
-locale:           en_US
-url:              
-
+title: Masha A.
+locale: en_US
+url:
 
 # Jekyll configuration
 
-permalink:   /:categories/:title/
-markdown:    redcarpet
+permalink: /:categories/:title/
+markdown: redcarpet
 highlighter: rouge
 sass:
   sass_dir: _sass
@@ -23,28 +22,24 @@ kramdown:
   toc_levels: 1..6
   enable_coderay: false
 
-
 # Site owner
 owner:
   name: Masha Antropova
   avatar: bio-photo.jpg
-  bio: 
-  email: masha.antropova@gmail.com 
-  disqus-shortname: 
-  twitter: antropovaM
-  facebook: #username
+  bio:
+  disqus-shortname:
   google:
     plus: #username
-    analytics: 
-    verify: 
-    ad-client: 
-    ad-slot: 
-  bing-verify: 
+    analytics:
+    verify:
+    ad-client:
+    ad-slot:
+  bing-verify:
   github: antropova
   stackoverflow: #http://stackoverflow.com/users/123456/username
   linkedin: antropova
   xing: #username
-  instagram: antropovam
+  instagram: #username
   lastfm: #username
   tumblr: #username
   pinterest: #username
@@ -52,9 +47,31 @@ owner:
   steam: #username
   dribbble: #username
   youtube: #username
-  soundcloud: masha-antropova
+  soundcloud: #username
   weibo: #username
-  flickr: antropovam
+  flickr: #username
 
 include: [".htaccess"]
-exclude: ["lib", "config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", "less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules", "Gemfile", "Gemfile.lock", "LICENSE", "README.md"]
+exclude:
+  [
+    "lib",
+    "config.rb",
+    "Capfile",
+    "config",
+    "log",
+    "Rakefile",
+    "Rakefile.rb",
+    "tmp",
+    "less",
+    "*.sublime-project",
+    "*.sublime-workspace",
+    "test",
+    "spec",
+    "Gruntfile.js",
+    "package.json",
+    "node_modules",
+    "Gemfile",
+    "Gemfile.lock",
+    "LICENSE",
+    "README.md",
+  ]
