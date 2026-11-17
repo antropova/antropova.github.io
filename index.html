@@ -7,115 +7,244 @@
       name="description"
       content="Masha Antropova - Senior Software Engineer"
     />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
     <meta name="robots" content="noai, noimageai" />
     <meta name="googlebot" content="noai" />
     <meta name="bingbot" content="noai" />
     <meta name="openai" content="noai" />
     <meta name="anthropic-ai" content="noai" />
     <meta name="perplexity-ai" content="noai" />
-
-    <link rel="stylesheet" href="css/base.css" />
-    <link rel="stylesheet" href="css/main.css" />
-    <link rel="stylesheet" href="css/vendor.css" />
-
     <link rel="icon" type="image/png" href="favicon.png" />
+
+    <style>
+      :root {
+        --bg: #faf8f5;
+        --ink: #1f1c1a;
+        --mute: #7a736d;
+        --line: #e2ddd6;
+        --accent: #c2410c;
+        --serif:
+          "Iowan Old Style", "Palatino Linotype", Palatino, Georgia,
+          "Times New Roman", serif;
+        --sans:
+          -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial,
+          sans-serif;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #161413;
+          --ink: #efebe6;
+          --mute: #9a928a;
+          --line: #302c29;
+          --accent: #f08a54;
+        }
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        -webkit-text-size-adjust: 100%;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font: 17px/1.65 var(--sans);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .skip-link {
+        position: absolute;
+        left: -999px;
+        top: 8px;
+        background: var(--ink);
+        color: var(--bg);
+        padding: 8px 12px;
+        border-radius: 6px;
+        z-index: 10;
+      }
+      .skip-link:focus {
+        left: 8px;
+      }
+
+      main {
+        max-width: 34rem;
+        margin: 0 auto;
+        padding: 14vh 1.5rem 8rem;
+      }
+
+      h1 {
+        font: 400 clamp(2.4rem, 8vw, 3.4rem) / 1.1 var(--serif);
+        letter-spacing: -0.02em;
+        margin: 0 0 1.25rem;
+      }
+      h2 {
+        font: 600 0.72rem / 1 var(--sans);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--mute);
+        margin: 0 0 0.9rem;
+      }
+      p {
+        margin: 0 0 1.1rem;
+      }
+      .lead {
+        font-size: 1.12rem;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: underline;
+        text-decoration-color: var(--line);
+        text-decoration-thickness: 1px;
+        text-underline-offset: 0.22em;
+        transition:
+          text-decoration-color 0.15s,
+          color 0.15s;
+      }
+      a:hover {
+        color: var(--accent);
+        text-decoration-color: currentColor;
+      }
+      a:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+        border-radius: 3px;
+      }
+
+      section {
+        margin-top: 3.5rem;
+      }
+      section:first-child {
+        margin-top: 0;
+      }
+
+      .skills {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        color: var(--mute);
+      }
+      .skills li {
+        display: inline;
+      }
+      .skills li + li::before {
+        content: "·";
+        margin: 0 0.55em;
+        color: var(--line);
+      }
+
+      .links {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem 1.6rem;
+      }
+      .links a {
+        text-decoration: none;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 1px;
+      }
+      .links a:hover {
+        border-bottom-color: currentColor;
+      }
+
+      .tool {
+        display: block;
+        text-decoration: none;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        padding: 1.1rem 0;
+      }
+      .tool span {
+        display: block;
+      }
+      .tool .name {
+        font: 400 1.25rem / 1.3 var(--serif);
+      }
+      .tool .desc {
+        color: var(--mute);
+        font-size: 0.95rem;
+      }
+      .tool .name::after {
+        content: " →";
+        color: var(--mute);
+        transition:
+          margin-left 0.15s,
+          color 0.15s;
+        margin-left: 0;
+      }
+      .tool:hover .name::after {
+        color: var(--accent);
+        margin-left: 0.2em;
+      }
+    </style>
   </head>
 
   <body id="top">
     <a class="skip-link" href="#main-content">Skip to main content</a>
+
     <main id="main-content">
-      <section id="intro-panel" class="profile-panel">
-        <div class="row">
-          <div class="col-twelve">
-            <h1>Masha Antropova</h1>
-            <p class="lead">
-              Senior Software Engineer at
-              <a href="https://www.linkedin.com/company/zip-co-limited/">Zip</a
-              >, based in Brooklyn, NY.
-            </p>
-
-            <nav aria-label="Social links">
-              <ul class="intro-social">
-                <li>
-                  <a
-                    href="https://github.com/antropova"
-                    aria-label="GitHub profile"
-                  >
-                    <i class="fa fa-github" aria-hidden="true"></i>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://www.linkedin.com/in/antropova"
-                    aria-label="LinkedIn profile"
-                  >
-                    <i class="fa fa-linkedin" aria-hidden="true"></i>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
+      <section id="intro-panel">
+        <h1>Masha Antropova</h1>
+        <p class="lead">
+          Senior Software Engineer at
+          <a href="https://www.linkedin.com/company/zip-co-limited/">Zip</a>,
+          based in Brooklyn, NY.
+        </p>
+        <ul class="links">
+          <li><a href="https://github.com/antropova">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/antropova">LinkedIn</a></li>
+        </ul>
       </section>
 
-      <section id="personal-note" class="profile-panel">
-        <div class="row">
-          <div class="col-twelve">
-            <p class="lead">
-              I build thoughtful, user-focused web products across the stack.
-            </p>
-            <p class="lead">
-              Outside of coding, I like exploring new spots, finding
-              <a href="https://www.goodreads.com/antropova">good reads</a>, and
-              enjoying live music and winter sports.
-            </p>
-          </div>
-        </div>
+      <section id="personal-note">
+        <p>I build thoughtful, user-focused web products across the stack.</p>
+        <p>
+          Outside of coding, I like exploring new spots, finding
+          <a href="https://www.goodreads.com/antropova">good reads</a>, and
+          enjoying live music and winter sports.
+        </p>
       </section>
 
-      <section id="skills-panel" class="profile-panel">
-        <div class="row">
-          <div class="col-twelve">
-            <h2>Skills</h2>
-
-            <ul class="skill-tags">
-              <li>JavaScript</li>
-              <li>TypeScript</li>
-              <li>React</li>
-              <li>Ruby</li>
-              <li>Ruby on Rails</li>
-              <li>APIs & Integrations</li>
-              <li>Testing</li>
-              <li>Product Engineering</li>
-            </ul>
-          </div>
-        </div>
+      <section id="skills-panel" aria-labelledby="skills-heading">
+        <h2 id="skills-heading">Skills</h2>
+        <ul class="skills">
+          <li>JavaScript</li>
+          <li>TypeScript</li>
+          <li>React JS</li>
+          <li>Next JS</li>
+          <li>React Native</li>
+          <li>Ruby</li>
+          <li>Ruby on Rails</li>
+          <li>APIs &amp; Integrations</li>
+          <li>Testing</li>
+          <li>Product Engineering</li>
+        </ul>
       </section>
 
-      <section id="cta-panel" class="profile-panel">
-        <div class="row">
-          <div class="col-twelve">
-            <div class="button-section">
-              <a
-                href="https://www.linkedin.com/in/antropova/"
-                class="button stroke"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Get In Touch</a
-              >
-              <a
-                href="https://www.linkedin.com/in/antropova/"
-                class="button button-primary"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Download CV</a
-              >
-            </div>
-          </div>
-        </div>
+      <section id="tools-panel" aria-labelledby="tools-heading">
+        <h2 id="tools-heading">Made for fun</h2>
+        <a class="tool" href="/tracklist">
+          <span class="name">Tracklist</span>
+          <span class="desc"
+            >Turn a rekordbox .cue file into a tracklist with timestamps for
+            soundcloud mixes.</span
+          >
+        </a>
+      </section>
+
+      <section id="contact-panel" aria-labelledby="elsewhere-heading">
+        <h2 id="elsewhere-heading">Contact</h2>
+        <a
+          href="https://www.linkedin.com/in/antropova/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Get in touch</a
+        >
       </section>
     </main>
   </body>
