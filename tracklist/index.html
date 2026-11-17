@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="robots" content="noai, noimageai" />
+    <meta name="googlebot" content="noai" />
+    <meta name="bingbot" content="noai" />
+    <meta name="openai" content="noai" />
+    <meta name="anthropic-ai" content="noai" />
+    <meta name="perplexity-ai" content="noai" />
+    <title>.cue to tracklist</title>
+    <style>
+      :root {
+        --bg: #f3f1ee;
+        --panel: #fff;
+        --ink: #1d1b1a;
+        --mute: #6f6a66;
+        --line: #dcd7d1;
+        --acc: #ff5500;
+        --acc-ink: #fff;
+        box-sizing: border-box;
+        padding-top: env(safe-area-inset-top, 0px);
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          --bg: #151413;
+          --panel: #1f1d1c;
+          --ink: #f1eeea;
+          --mute: #9b948e;
+          --line: #34312f;
+          --acc: #ff6a21;
+          --acc-ink: #151413;
+        }
+      }
+      :root[data-theme="dark"] {
+        --bg: #151413;
+        --panel: #1f1d1c;
+        --ink: #f1eeea;
+        --mute: #9b948e;
+        --line: #34312f;
+        --acc: #ff6a21;
+        --acc-ink: #151413;
+      }
+      html {
+        scroll-padding-top: env(safe-area-inset-top, 0px);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font:
+          16px/1.5 "Helvetica Neue",
+          Helvetica,
+          Arial,
+          sans-serif;
+      }
+      main {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 32px 20px 64px;
+      }
+      h1 {
+        font-size: 28px;
+        line-height: 1.2;
+        margin: 0 0 6px;
+        letter-spacing: -0.01em;
+      }
+      p.sub {
+        margin: 0 0 24px;
+        color: var(--mute);
+      }
+      #drop {
+        border: 2px dashed var(--line);
+        border-radius: 14px;
+        padding: 36px 20px;
+        text-align: center;
+        background: var(--panel);
+        cursor: pointer;
+        transition:
+          border-color 0.15s,
+          background 0.15s;
+      }
+      #drop.over,
+      #drop:focus-visible {
+        border-color: var(--acc);
+        outline: none;
+      }
+      #drop strong {
+        display: block;
+        font-size: 18px;
+        margin-bottom: 4px;
+      }
+      #drop span {
+        color: var(--mute);
+        font-size: 14px;
+      }
+      #result {
+        display: none;
+        margin-top: 28px;
+      }
+      .bar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 14px;
+      }
+      label.sel {
+        font-size: 14px;
+        color: var(--mute);
+      }
+      select {
+        font: inherit;
+        color: var(--ink);
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 6px 8px;
+        margin-left: 6px;
+      }
+      .note {
+        font-size: 14px;
+        color: var(--mute);
+        margin: 0 0 14px;
+      }
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        overflow: hidden;
+      }
+      li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 12px;
+        border-bottom: 1px solid var(--line);
+      }
+      li:last-child {
+        border-bottom: 0;
+      }
+      li.off {
+        opacity: 0.45;
+      }
+      li .t {
+        font-variant-numeric: tabular-nums;
+        font-weight: 600;
+        min-width: 58px;
+      }
+      li input[type="text"] {
+        flex: 1;
+        min-width: 0;
+        font: inherit;
+        color: var(--ink);
+        background: transparent;
+        border: 1px solid transparent;
+        border-radius: 6px;
+        padding: 4px 6px;
+      }
+      li input[type="text"]:hover {
+        border-color: var(--line);
+      }
+      li input[type="text"]:focus {
+        border-color: var(--acc);
+        outline: none;
+      }
+      li input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        accent-color: var(--acc);
+      }
+      button {
+        font: inherit;
+        cursor: pointer;
+        border-radius: 8px;
+        border: 1px solid var(--line);
+        background: var(--panel);
+        color: var(--ink);
+        padding: 6px 10px;
+      }
+      button:hover {
+        border-color: var(--acc);
+      }
+      button:focus-visible {
+        outline: 2px solid var(--acc);
+        outline-offset: 2px;
+      }
+      button.main {
+        background: var(--acc);
+        border-color: var(--acc);
+        color: var(--acc-ink);
+        font-weight: 600;
+        padding: 10px 16px;
+      }
+      h2 {
+        font-size: 18px;
+        margin: 28px 0 10px;
+      }
+      textarea {
+        width: 100%;
+        min-height: 180px;
+        font:
+          14px/1.6 ui-monospace,
+          Menlo,
+          Consolas,
+          monospace;
+        color: var(--ink);
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 14px;
+        resize: vertical;
+      }
+      #err {
+        color: #c0392b;
+        margin-top: 12px;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>.cue to tracklist</h1>
+      <p class="sub">
+        Drop in the .cue file from your rekordbox recording and get a tracklist
+        with timestamps ready to paste into your SoundCloud description.
+      </p>
+
+      <div id="drop" tabindex="0" role="button" aria-label="Choose a .cue file">
+        <strong>Drop your .cue file here</strong>
+        <span
+          >or click to choose it. Nothing is uploaded; it’s read in your
+          browser.</span
+        >
+        <input id="file" type="file" accept=".cue,text/plain" hidden />
+      </div>
+      <div id="err"></div>
+
+      <section id="result">
+        <div class="bar">
+          <label class="sel"
+            >Time format
+            <select id="fmt">
+              <option value="hms">Rekordbox (0:MM:SS)</option>
+              <option value="std">Standard CUE (MM:SS:frames)</option>
+            </select></label
+          >
+          <span id="count" class="note" style="margin: 0"></span>
+        </div>
+        <p class="note">
+          Edit any line, or untick a track to leave it out. Repeated tracks
+          start unticked. Click a time to copy that one line.
+        </p>
+        <ul id="list"></ul>
+
+        <h2>Description text</h2>
+        <textarea id="out" readonly></textarea>
+        <div class="bar" style="margin-top: 12px">
+          <button class="main" id="copy">Copy tracklist</button>
+          <span id="msg" class="note" style="margin: 0"></span>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      (function () {
+        var tracks = [],
+          drop = document.getElementById("drop"),
+          fileEl = document.getElementById("file"),
+          list = document.getElementById("list"),
+          out = document.getElementById("out"),
+          fmt = document.getElementById("fmt"),
+          msg = document.getElementById("msg");
+
+        function showErr(t) {
+          var e = document.getElementById("err");
+          e.textContent = t;
+          e.style.display = t ? "block" : "none";
+        }
+
+        function parse(text) {
+          var res = [],
+            cur = null,
+            lines = text.replace(/\r/g, "").split("\n");
+          lines.forEach(function (raw) {
+            var l = raw.trim(),
+              m;
+            if (/^TRACK\s+\d+/i.test(l)) {
+              cur = { title: "", performer: "", idx: null };
+              res.push(cur);
+              return;
+            }
+            if (!cur) return;
+            if ((m = l.match(/^TITLE\s+"(.*)"/i))) cur.title = m[1];
+            else if ((m = l.match(/^PERFORMER\s+"(.*)"/i)))
+              cur.performer = m[1];
+            else if ((m = l.match(/^INDEX\s+01\s+(\d+):(\d+):(\d+)/i)))
+              cur.idx = [+m[1], +m[2], +m[3]];
+          });
+          return res.filter(function (t) {
+            return t.idx;
+          });
+        }
+
+        function seconds(idx) {
+          return fmt.value === "hms"
+            ? idx[0] * 3600 + idx[1] * 60 + idx[2]
+            : idx[0] * 60 + idx[1] + idx[2] / 75;
+        }
+        function stamp(s) {
+          s = Math.floor(s);
+          var h = Math.floor(s / 3600),
+            m = Math.floor((s % 3600) / 60),
+            x = s % 60;
+          var p = function (n) {
+            return n < 10 ? "0" + n : "" + n;
+          };
+          return h > 0 ? h + ":" + p(m) + ":" + p(x) : m + ":" + p(x);
+        }
+        function label(t) {
+          var title = t.title.trim(),
+            perf = t.performer.trim();
+          if (/ - /.test(title)) return title;
+          if (!perf || /^(compilation|various artists?)$/i.test(perf))
+            return title;
+          return perf + " - " + title;
+        }
+        function key(s) {
+          return s.toLowerCase().replace(/\s+/g, " ").trim();
+        }
+
+        function build() {
+          var seen = {};
+          tracks.forEach(function (t) {
+            if (t.text === undefined) {
+              t.text = label(t);
+              var k = key(t.text);
+              t.on = !seen[k];
+              seen[k] = true;
+            }
+          });
+        }
+
+        function render() {
+          list.innerHTML = "";
+          tracks.forEach(function (t, i) {
+            var li = document.createElement("li");
+            if (!t.on) li.className = "off";
+            var cb = document.createElement("input");
+            cb.type = "checkbox";
+            cb.checked = t.on;
+            cb.setAttribute("aria-label", "Include track " + (i + 1));
+            cb.onchange = function () {
+              t.on = cb.checked;
+              li.className = t.on ? "" : "off";
+              update();
+            };
+            var tm = document.createElement("button");
+            tm.className = "t";
+            tm.style.border = "0";
+            tm.style.background = "none";
+            tm.style.padding = "0";
+            tm.textContent = stamp(seconds(t.idx));
+            tm.title = "Copy this line";
+            tm.onclick = function () {
+              copy(tm.textContent + " " + t.text, "Copied “" + t.text + "”");
+            };
+            var tx = document.createElement("input");
+            tx.type = "text";
+            tx.value = t.text;
+            tx.setAttribute("aria-label", "Track name");
+            tx.oninput = function () {
+              t.text = tx.value;
+              update();
+            };
+            li.appendChild(cb);
+            li.appendChild(tm);
+            li.appendChild(tx);
+            list.appendChild(li);
+          });
+          update();
+        }
+
+        function update() {
+          var on = tracks.filter(function (t) {
+            return t.on;
+          });
+          out.value = on
+            .map(function (t) {
+              return stamp(seconds(t.idx)) + " " + t.text;
+            })
+            .join("\n");
+          document.getElementById("count").textContent =
+            on.length + " of " + tracks.length + " tracks included";
+          var ts = list.querySelectorAll(".t");
+          tracks.forEach(function (t, i) {
+            if (ts[i]) ts[i].textContent = stamp(seconds(t.idx));
+          });
+        }
+
+        function copy(text, ok) {
+          function done() {
+            msg.textContent = ok;
+            setTimeout(function () {
+              msg.textContent = "";
+            }, 2500);
+          }
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(done, fallback);
+          } else fallback();
+          function fallback() {
+            var ta = document.createElement("textarea");
+            ta.value = text;
+            document.body.appendChild(ta);
+            ta.select();
+            try {
+              document.execCommand("copy");
+              done();
+            } catch (e) {
+              msg.textContent = "Select the text and copy it manually.";
+            }
+            document.body.removeChild(ta);
+          }
+        }
+
+        function load(file) {
+          showErr("");
+          var r = new FileReader();
+          r.onload = function () {
+            tracks = parse(String(r.result));
+            if (!tracks.length) {
+              document.getElementById("result").style.display = "none";
+              showErr(
+                "No tracks found. Make sure this is the .cue file from your recording.",
+              );
+              return;
+            }
+            build();
+            render();
+            document.getElementById("result").style.display = "block";
+          };
+          r.onerror = function () {
+            showErr("Couldn’t read that file.");
+          };
+          r.readAsText(file);
+        }
+
+        drop.onclick = function () {
+          fileEl.click();
+        };
+        drop.onkeydown = function (e) {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            fileEl.click();
+          }
+        };
+        fileEl.onchange = function () {
+          if (fileEl.files[0]) load(fileEl.files[0]);
+        };
+        ["dragenter", "dragover"].forEach(function (n) {
+          drop.addEventListener(n, function (e) {
+            e.preventDefault();
+            drop.classList.add("over");
+          });
+        });
+        ["dragleave", "drop"].forEach(function (n) {
+          drop.addEventListener(n, function (e) {
+            e.preventDefault();
+            drop.classList.remove("over");
+          });
+        });
+        drop.addEventListener("drop", function (e) {
+          var f = e.dataTransfer.files[0];
+          if (f) load(f);
+        });
+        fmt.onchange = update;
+        document.getElementById("copy").onclick = function () {
+          copy(out.value, "Tracklist copied");
+        };
+      })();
+    </script>
+  </body>
+</html>
